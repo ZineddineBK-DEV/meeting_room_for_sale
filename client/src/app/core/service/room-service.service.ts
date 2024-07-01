@@ -28,7 +28,7 @@ export class RoomServiceService {
     );
   }
   deleteRoom(id: string): Observable<any> {
-    return this.http.delete(this.api + "delete/" + id).pipe(
+    return this.http.delete(this.api + "/delete/" + id).pipe(
       catchError(throwError)
     );
   }

@@ -3,6 +3,8 @@ const roomCtr = require("../controller/room_controller")
 const multer = require("multer");
 
 const { RoomStorageEngine } = require("../middlewares/uploadImageEngine");
+const { checkAdminMiddleware } = require("../middlewares/checkAdminMiddleware");
+
 const upload = multer({ storage: RoomStorageEngine });
 //flutter consumes this only
 /* router.get("/events", roomCtr.getAllRooms); */
@@ -12,6 +14,6 @@ const upload = multer({ storage: RoomStorageEngine });
 router.get("/getAllRooms", roomCtr.findAllRooms);
 router.get("/getRoomEvents/:id", roomCtr.findEventsByRoomID);
 router.post("",upload.single("image"), roomCtr.addRoom);
-router.put("/editRoom/:id",roomCtr.editRoom);
+router.put("/editRoom/:id",upload.single("image"),checkAdminMiddleware,roomCtr.editRoom);
 router.delete("/delete/:id",roomCtr.deleteRoom);
 module.exports = router;

@@ -40,7 +40,7 @@ export class RoomComponent {
   Events: any[]=[];
   tempEvents: any[]=[];
   currentEvents: EventApi[] = [];
-  role=""
+  role!:string
   readonly roomPic = environment.ROOM_PICS_URL;
   constructor(
     private fb: UntypedFormBuilder,
@@ -51,6 +51,7 @@ export class RoomComponent {
     this.dialogTitle = 'Add New Event';    
   }
   public ngOnInit(): void {
+    this.role = localStorage.getItem('role')!
     this.showCalendar==false
     this.getRooms()
   }

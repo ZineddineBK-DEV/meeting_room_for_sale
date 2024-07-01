@@ -38,7 +38,7 @@ module.exports.editRoom = async function(req, res, next) {
         },
         { new: true } 
       );
-    //   const updatedRoom = await RoomModel.findById(ID)
+      const updatedRoom = await RoomModel.findById(ID)
       res.status(200).send({ message: "Events updated successfully", data: updatedRoom });
     } catch (err) {
         console.log(err)

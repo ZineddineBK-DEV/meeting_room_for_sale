@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
       formdata.append('password',this.registerForm.value.password)
       formdata.append('image',this.files[0])
       this.authService.signup(formdata);
-      this.toastr.success('Signup request sent succefully , waiting for admin confirmation!', 'Success');
+      this.toastr.success('Your account is successfully created!', 'Success');
     }
   }
   onSelect(event:any) {

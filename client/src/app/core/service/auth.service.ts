@@ -19,10 +19,11 @@ export class AuthService {
    user!: User;
    image!: string
    name!:string
+   role!:string
   constructor(private http: HttpClient, private router: Router) {}
  
   login(email: string, password: string): Observable<any> {
-    return this.http.post<{ token: string, name:string, image: string, id: string }>(this.api, { email: email, password: password })
+    return this.http.post<{ token: string, name:string, image: string, id: string , role:string }>(this.api, { email: email, password: password })
   }
   signup(user: FormData) {
     let success;
@@ -63,11 +64,12 @@ export class AuthService {
     }, expiresIn * 1000);
   }
 
-   saveAuthData(token: string, name: string, image: string,userID:string) {
+   saveAuthData(token: string, name: string, image: string,userID:string, role :string) {
     localStorage.setItem("token", token);
     localStorage.setItem("name", name);
     localStorage.setItem("userId", userID);
     localStorage.setItem("image", image);
+    localStorage.setItem("role", role);
   }
 
    clearAuthData() {
@@ -75,6 +77,7 @@ export class AuthService {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("image");
+    localStorage.removeItem("role");
   }
 
   //  getAuthData() {

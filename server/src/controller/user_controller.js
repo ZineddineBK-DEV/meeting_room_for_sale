@@ -44,6 +44,7 @@ module.exports.login = async function (req, res, next) {
         name: fetchedUser.name,
         image: fetchedUser.image,
         id: fetchedUser._id,
+        role : fetchedUser.role
       });
     } catch (error) {
       console.log(error)

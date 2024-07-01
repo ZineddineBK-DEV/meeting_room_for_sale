@@ -30,7 +30,7 @@ export class SigninComponent implements OnInit {
    name!: string
    user!: User;
    image!: string
-
+  role!:string
   constructor(
     private formBuilder: UntypedFormBuilder,
     private router: Router,
@@ -38,6 +38,7 @@ export class SigninComponent implements OnInit {
     private toastr:ToastrService
   ) {}
   ngOnInit() {
+
     this.loginForm = new FormGroup({
     email: new FormControl('',[Validators.required, Validators.email, Validators.minLength(5)]),
     password: new FormControl('',[Validators.required, Validators.minLength(8)]),
@@ -62,7 +63,8 @@ export class SigninComponent implements OnInit {
                 this.userID = response.id;
                 this.name = response.name
                 this.image = response.image
-                this.authService.saveAuthData(this.token,this.name, this.image,this.userID)
+                this.role = response.role
+                this.authService.saveAuthData(this.token,this.name, this.image,this.userID,this.role)
                 this.toastr.success("Login success", "Success");
                 this.router.navigate(['dashboard/main']);
             }

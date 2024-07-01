@@ -11,7 +11,7 @@ const userSchema = new Schema({
       },
     password: { type: String },
     image: { type: String ,default: avatar},
-    
+    role : {type : String , default: "User"}
 
 })
 

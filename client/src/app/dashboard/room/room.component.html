@@ -20,10 +20,10 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-3 col-sm-10 p-l-30">
-                <!-- <div class="m-b-25">
-                  <button class="btn btn-icon icon-left btn-primary"  (click)="addRoomWindowCall()">
+                <div class="m-b-25">
+                  <button class="btn btn-icon icon-left btn-primary" *ngIf="role==='Admin'"  (click)="addRoomWindowCall()">
                     Add Room</button>
-                </div> -->
+                </div>
                 
                 <h5 class="roomContainer">Rooms <i class="fas fa-level-down-alt"></i></h5>
 

@@ -56,7 +56,6 @@ export class SigninComponent implements OnInit {
       return;
     } else{
         this.authService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe((response) => {
-          console.log(response.token)
             this.token = response.token;
               if (this.token) {
                 this.isAuthenticated = true;

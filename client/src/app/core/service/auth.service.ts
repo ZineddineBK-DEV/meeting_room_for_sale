@@ -31,7 +31,6 @@ export class AuthService {
     this.http.post(this.api+"signup", user).subscribe(response => {
       let data: any;
       data = response
-      console.log(data.message)
       if (!response) {
         success = false;
         return null;

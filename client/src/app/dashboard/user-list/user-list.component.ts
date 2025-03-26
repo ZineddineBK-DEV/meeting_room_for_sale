@@ -45,7 +45,7 @@ export class UserListComponent {
     this.userService.getEmployees().subscribe(resultat=>{
       this.rows = resultat.data as User[];
       console.log(this.rows)
-      // this.rows = this.rows.filter(row => row._id !== localStorage.getItem('userId'));
+      this.rows = this.rows.filter(row => row._id !== localStorage.getItem('userId'));
       this.temp = resultat;
       this.employeesCount = this.rows.length;
       this.loadingIndicator = false

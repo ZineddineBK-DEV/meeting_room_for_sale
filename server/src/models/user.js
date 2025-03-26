@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
-let avatar ="User.jpg"
+let avatar ="User.png"
 const userSchema = new Schema({
     name: String,
     email: {

@@ -11,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 db_init();
 
+
 app.use("/images", express.static(path.join("./src/static/images")));
 app.use("/roomImages", express.static(path.join("./src/static/roomImages")));
 
@@ -20,6 +21,6 @@ app.use("/api/material/user", userRoute);
 app.use("/api/material/event", eventRoute);
 
 
-const PORT = 3009;
+const PORT = 3000;
 
 app.listen(PORT, () => console.log("Server listening on port " + PORT));

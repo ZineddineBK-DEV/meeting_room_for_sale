@@ -19,6 +19,21 @@ import { EventInfoRoomModalComponent } from './room/event-info-room-modal/event-
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { EditRoomEventComponent } from './room/edit-room-event/edit-room-event.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { AddUserComponent } from './user-list/add-user/add-user.component';
+import { FeatherModule } from 'angular-feather';
+import { Facebook, Twitter, Github, Gitlab, User, Key, UserCheck, Mail } from 'angular-feather/icons';
+
+const icons = {
+  Facebook,
+  Twitter,
+  Github,
+  Gitlab,
+  User,
+  Key,
+  UserCheck,
+  Mail,
+};
+
 @NgModule({
   declarations: [
     MainComponent, 
@@ -29,13 +44,15 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     EditRoomModalComponent, 
     AddRoomEventModalComponent,
     EventInfoRoomModalComponent, 
-    EditRoomEventComponent,
+    EditRoomEventComponent, AddUserComponent,
   ],
   imports: [
     CommonModule,
     NgbModule,
     DashboardRoutingModule,
     NgxDatatableModule,
+    FeatherModule.pick(icons),
+    
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-left'
     }),

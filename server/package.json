@@ -19,7 +19,5 @@
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.0",
     "express-async-handler": "^1.2.0"
-
-
   }
 }

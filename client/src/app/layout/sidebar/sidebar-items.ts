@@ -23,6 +23,17 @@ export const ROUTES: RouteInfo[] = [
     submenu: [],
   },
   {
+    path: '/dashboard/userList',
+    title: 'Users managment',
+    iconType: 'feather',
+    icon: 'user',
+    class: '',
+    groupTitle: false,
+    badge: '',
+    badgeClass: '',
+    submenu: [],
+  },
+  {
     path: '/dashboard/room',
     title: 'Rooms',
     iconType: 'feather',

@@ -9,6 +9,7 @@ router.post("/signup", upload.single("image"), userCtrl.signUp);
 router.post("", userCtrl.login);
 router.get("/getall", userCtrl.findAllUsers);
 router.get("/getUserByID/:id",userCtrl.getUserById);
+router.delete("/:id",userCtrl.deleteUser);
 
 // router.post("", userCtrl.addUser);
 

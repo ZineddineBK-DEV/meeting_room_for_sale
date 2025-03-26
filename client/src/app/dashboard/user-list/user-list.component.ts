@@ -8,11 +8,15 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { of, switchMap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Router, RouterLink } from '@angular/router';
+import { AddUserComponent } from './add-user/add-user.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
+  providers: [ToastrService],
+
 })
 export class UserListComponent {
   readonly PICS_URL = environment.PICS_URL;
@@ -29,7 +33,7 @@ export class UserListComponent {
   userRole:string=""
   @ViewChild('table') table!: DatatableComponent;
 
-  constructor(public userService:UserServiceService,private modalService: NgbModal,private router : Router) {}
+  constructor(public userService:UserServiceService,private modalService: NgbModal,private router : Router,private toastr: ToastrService) {}
 
   ngOnInit(): void {  
     this.userRole = localStorage.getItem("roles")!
@@ -39,9 +43,9 @@ export class UserListComponent {
   }
   getUsers(){
     this.userService.getEmployees().subscribe(resultat=>{
-      this.rows = resultat as User[];
-      //console.log(this.rows)
-      this.rows = this.rows.filter(row => row._id !== localStorage.getItem('userId'));
+      this.rows = resultat.data as User[];
+      console.log(this.rows)
+      // this.rows = this.rows.filter(row => row._id !== localStorage.getItem('userId'));
       this.temp = resultat;
       this.employeesCount = this.rows.length;
       this.loadingIndicator = false
@@ -88,6 +92,51 @@ export class UserListComponent {
     modalRef.componentInstance.title="User details"
     this.user=user
   }
+  addUser(){
+    const modalRef: NgbModalRef = this.modalService.open(AddUserComponent, {
+      keyboard: false ,
+      backdropClass:'light-blue-backdrop'
+    });
+    modalRef.result.then((res)=>{
+      this.getUsers()
+    })
+  }
+  deleteUser(id:any){
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
 
-  
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: false,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({title:'Deleted!',text: 'Offer has been deleted.',icon:'success',confirmButtonColor: '#47A992',});
+        this.userService.deleteUser(id).subscribe((res:any)=>{
+        this.rows = this.rows.filter(r => r._id !== id);
+        this.toastr.success(res.message, 'Success');
+      })
+  }else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    Swal.fire({
+      title:'Cancelled',
+      text:'Offer is safe :)',
+      icon:'warning',
+      confirmButtonColor: '#47A992',
+    }
+    )
+  }
+})
+  }
 }

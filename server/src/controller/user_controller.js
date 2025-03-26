@@ -8,13 +8,26 @@ const { ObjectId } = require("mongodb");
 module.exports.signUp = async function (req, res, next) {
     try {
         hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const user = await UserModel.create({ 
+        let user
+        if (req.file){
+          user = await UserModel.create({ 
             name : req.body.name, 
             email : req.body.email,
             password : hashedPassword,
             image : req.file.filename
         });
-        res.status(200).json("Account Created succefully");
+        }else{
+          user = await UserModel.create({ 
+            name : req.body.name, 
+            email : req.body.email,
+            password : hashedPassword,
+        });
+        }
+         
+        res.status(200).json({
+          message :"Account Created succefully",
+          data : user
+        });
         }
     catch (error) {
       console.log(error)
@@ -65,6 +78,22 @@ module.exports.getUserById = async function (req, res) {
   try {
     const user = await UserModel.findById(ID)
     res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ message: error });
+  }
+};
+module.exports.deleteUser = async function (req, res) {
+  const ID = req.params.id;
+
+  if (!ObjectId.isValid(ID)) {
+    return res.status(404).json("ID is not valid");
+  }
+  try {
+    const user = await UserModel.findByIdAndDelete(ID)
+    res.status(200).json({
+      message: "User deleted successfully",
+      data: user
+    });
   } catch (error) {
     res.status(500).json({ message: error });
   }

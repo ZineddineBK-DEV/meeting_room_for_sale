@@ -1,0 +1,76 @@
+<div class="modal-header editRowModal">
+    <h4 class="modal-title" id="modal-basic-title">
+        <div class="table-modal-header">
+            <div class="modal-about">
+                <div class="fw-bold p-t-10 font-17">
+                    Add Vehicle Event</div>
+            </div>
+        </div>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <form class="login-form mt-4" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group position-relative">
+                    <label>Fullname <span class="text-danger">*</span></label>
+                    <i-feather name="user" class="login-icons"></i-feather>
+                    <input type="text" class="form-control psl-5" formControlName="name" placeholder="Fullname">
+                    <small class="form-text text-danger"
+                        *ngIf="!registerForm.get('name')?.valid && registerForm.get('name')?.touched"> Fullname is
+                        invalid
+                    </small>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group position-relative">
+                    <label>Your Email <span class="text-danger">*</span></label>
+                    <i-feather name="mail" class="login-icons"></i-feather>
+                    <input type="email" class="form-control psl-5" formControlName="email" placeholder="Email">
+                    <small class="form-text text-danger"
+                        *ngIf="!registerForm.get('email')?.valid && registerForm.get('email')?.touched"> Email is
+                        invalid
+                    </small>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group position-relative">
+                    <label>Password <span class="text-danger">*</span></label>
+                    <i-feather name="key" class="login-icons"></i-feather>
+                    <input type="password" class="form-control psl-5" formControlName="password" placeholder="Password">
+                    <small class="form-text text-danger"
+                        *ngIf="!registerForm.get('password')?.valid && registerForm.get('password')?.touched"> Password
+                        is
+                        invalid
+                    </small>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <label>Upload picture<span class="text-danger">*</span></label>
+                <ngx-dropzone style="background-color: transparent;" [multiple]="false" (change)="onSelect($event)">
+                    <ngx-dropzone-label>You can click or drag & drop!</ngx-dropzone-label>
+                    <ngx-dropzone-preview style="width: 250px;" *ngFor="let f of files" [removable]="true"
+                        (removed)="onRemove(f)">
+                        <ngx-dropzone-label>
+                            <div style="color: rgb(151, 82, 82);width: 150px;height: 150px;">{{ f.name }}</div>
+                        </ngx-dropzone-label>
+                        <small class="form-text text-danger" *ngIf="!f"> Picture is required</small>
+                    </ngx-dropzone-preview>
+                </ngx-dropzone>
+            </div>
+        </div>
+        <div *ngIf="error" class="alert alert-danger mb-3 msl-3">{{error}}</div>
+        <div class="col-md-12">
+            <button class="btn btn-primary auth-form-btn">Create Account</button>
+        </div>
+        <!-- <div class="mx-auto">
+            <p class="mb-0 mt-3"><small class="text msr-2">Already have an account ?</small> <a
+                    routerLink="/authentication/signin" class="text fw-bold">Sign in</a></p>
+        </div> -->
+    </form>
+</div>

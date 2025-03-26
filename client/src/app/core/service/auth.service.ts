@@ -26,20 +26,9 @@ export class AuthService {
     return this.http.post<{ token: string, name:string, image: string, id: string , role:string }>(this.api, { email: email, password: password })
   }
   signup(user: FormData) {
-    let success;
-    
-    this.http.post(this.api+"signup", user).subscribe(response => {
-      let data: any;
-      data = response
-      if (!response) {
-        success = false;
-        return null;
-      }
-      success = true
-      this.router.navigate(["/authentication/signin"])
-      return response
-    })
-    return success;
+    return this.http.post(this.api+"signup", user).pipe(
+      catchError(throwError)
+    );
   }
   logout() {
     // remove user from local storage to log user out

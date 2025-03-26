@@ -15,6 +15,6 @@ export class UserDetailsComponent {
 
   constructor(public activeModal: NgbActiveModal) {}
   ngOnInit(): void {
-    // console.log(this.payload)
+    console.log(this.payload)
   }
 }

@@ -42,6 +42,11 @@ export class UserServiceService {
       catchError(throwError)
     );
   }
+  deleteUser(userID:any){
+    return this.http.delete(this.api + "/" + userID).pipe(
+      catchError(throwError)
+    );
+  }
   updatePass(userID:string,userForm: any){
     return this.http.patch(this.api + "updatePass/" + userID,userForm).pipe(
       catchError(throwError)

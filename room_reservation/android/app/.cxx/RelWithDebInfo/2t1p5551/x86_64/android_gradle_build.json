@@ -1,0 +1,28 @@
+{
+  "buildFiles": [
+    "E:\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "E:\\android-sdk\\cmake\\3.18.1\\bin\\ninja.exe",
+      "-C",
+      "E:\\zineddineboubaker\\Desktop\\meetingRoomApp - for sale\\room_reservation\\android\\app\\.cxx\\RelWithDebInfo\\2t1p5551\\x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "E:\\android-sdk\\cmake\\3.18.1\\bin\\ninja.exe",
+    "-C",
+    "E:\\zineddineboubaker\\Desktop\\meetingRoomApp - for sale\\room_reservation\\android\\app\\.cxx\\RelWithDebInfo\\2t1p5551\\x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {},
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "E:\\android-sdk\\ndk\\26.3.11579264\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+      "cppCompilerExecutable": "E:\\android-sdk\\ndk\\26.3.11579264\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": []
+}

@@ -28,7 +28,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-4 d-flex justify-content-end">
-                                        <button class="btn btn-primary" (click)="addUser()">Add User</button>
+                                        <button class="btn btn-primary" *ngIf="userRole==='Admin'" (click)="addUser()">Add User</button>
                                     </div>
                                 </div>
                                 <ngx-datatable #table class="material" [rows]="rows"  [sortType]="SortType.multi"

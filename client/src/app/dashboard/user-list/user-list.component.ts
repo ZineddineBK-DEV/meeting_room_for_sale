@@ -36,7 +36,7 @@ export class UserListComponent {
   constructor(public userService:UserServiceService,private modalService: NgbModal,private router : Router,private toastr: ToastrService) {}
 
   ngOnInit(): void {  
-    this.userRole = localStorage.getItem("roles")!
+    this.userRole = localStorage.getItem("role")!
     this.loadingIndicator = true
     this.getUsers()
    
@@ -45,7 +45,7 @@ export class UserListComponent {
     this.userService.getEmployees().subscribe(resultat=>{
       this.rows = resultat.data as User[];
       console.log(this.rows)
-      // this.rows = this.rows.filter(row => row._id !== localStorage.getItem('userId'));
+      this.rows = this.rows.filter(row => row._id !== localStorage.getItem('userId') && row.role !=='Admin');
       this.temp = resultat;
       this.employeesCount = this.rows.length;
       this.loadingIndicator = false
